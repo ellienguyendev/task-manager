@@ -1,0 +1,169 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>Resilient Staff Tasks</title>
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+  <link href="https://fonts.googleapis.com/css?family=Carrois+Gothic+SC|Oswald|Roboto+Condensed&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <header class="clearfix">
+    <img src="img/rc.png" class="floatLeft">
+
+    <div class="floatLeft">
+      <div class="title floatLeft">
+        <h1 class="floatLeft">Resilient Staff To-do: <span class="date"></span></h1>
+      </div>
+      <div class="login floatLeft">
+        <h2>Welcome, <%= user.local.email %></h2>
+        <a href="/logout" class="btn btn-default btn-sm">Logout</a>
+        <% if (user.local.email) { %>
+          <a href="/unlink/local" class="btn btn-default">Unlink</a>
+        <% } else { %>
+          <a href="/connect/local" class="btn btn-default">Connect Local</a>
+        <% } %>
+      </div>
+
+
+      <form action="/assign" method="post">
+        <input type="text" name="task">
+        <select name="name">
+          <option value="Team">Team</option>
+          <option value="Del">Del</option>
+          <option value="Leon">Leon</option>
+          <option value="Stephanie">Stephanie</option>
+          <option value="Muigai">Muigai</option>
+          <option value="Rougui">Rougui</option>
+          <option value="Nick">Nick</option>
+        </select>
+        <button type="submit" name="button">onward </button>
+      </form>
+    </div>
+  </header>
+
+  <section class="container">
+    <section class="team floatLeft">
+      <span><i class="fas fa-square" style= "color: black"></i></span>
+      <h4>Team</h4>
+      <ul>
+        <% for(var a=0; a<tasks.length; a++) {%>
+          <% if (tasks[a].assign === "Team") { %>
+          <li><%= tasks[a].task %></li>
+          <% } %>
+        <% } %>
+      </ul>
+
+      <span><i class="fas fa-square" style= "color: purple"></i></span>
+      <h4>Del</h4>
+      <ul>
+        <% for(var b=0; b<tasks.length; b++) {%>
+          <% if (tasks[b].assign === "Del") { %>
+          <li><%= tasks[b].task %></li>
+          <% } %>
+        <% } %>
+      </ul>
+
+      <span><i class="fas fa-square" style= "color: gold"></i></span>
+      <h4>Stephanie</h4>
+      <ul>
+        <% for(var c=0; c<tasks.length; c++) {%>
+          <% if (tasks[c].assign === "Stephanie") { %>
+          <li><%= tasks[c].task %></li>
+          <% } %>
+        <% } %>
+      </ul>
+
+      <span><i class="fas fa-square" style= "color: green"></i></span>
+      <h4>Leon</h4>
+      <ul>
+        <% for(var d=0; d<tasks.length; d++) {%>
+          <% if (tasks[d].assign === "Leon") { %>
+          <li><%= tasks[d].task %></li>
+          <% } %>
+        <% } %>
+      </ul>
+
+      <span><i class="fas fa-square" style= "color: red"></i></span>
+      <h4>Muigai</h4>
+      <ul>
+        <% for(var e=0; e<tasks.length; e++) {%>
+          <% if (tasks[e].assign === "Muigai") { %>
+          <li><%= tasks[e].task %></li>
+          <% } %>
+        <% } %>
+      </ul>
+
+      <span><i class="fas fa-square" style= "color: orange"></i></span>
+      <h4>Rougui</h4>
+      <ul>
+        <% for(var f=0; f<tasks.length; f++) {%>
+          <% if (tasks[f].assign === "Rougui") { %>
+          <li><%= tasks[f].task %></li>
+          <% } %>
+        <% } %>
+      </ul>
+
+      <span><i class="fas fa-square" style= "color: blue"></i></span>
+      <h4>Nick</h4>
+      <ul>
+        <% for(var g=0; g<tasks.length; g++) {%>
+          <% if (tasks[g].assign === "Nick") { %>
+          <li><%= tasks[g].task %></li>
+          <% } %>
+        <% } %>
+      </ul>
+    </section>
+
+    <section class="tasks floatLeft clearfix">
+      <ul>
+        <% for(var i=0; i<tasks.length; i++) {%>
+          <% var nameColor %>
+          <% if (tasks[i].assign === "Team") { %>
+            <% nameColor = "black" %>
+          <%} else if (tasks[i].assign === "Del"){ %>
+          <% nameColor = "purple" %>
+            <%} else if (tasks[i].assign === "Leon"){ %>
+          <% nameColor = "green" %>
+            <%} else if (tasks[i].assign === "Stephanie"){ %>
+          <% nameColor = "gold" %>
+            <%} else if (tasks[i].assign === "Muigai"){ %>
+          <% nameColor = "red" %>
+            <%} else if (tasks[i].assign === "Rougui"){ %>
+          <% nameColor = "orange" %>
+            <%} else if (tasks[i].assign === "Nick"){ %>
+          <% nameColor = "blue"%>
+          <% } %>
+
+          <li class="message floatLeft">
+            <h4 class="floatLeft nameDisplay" style="color:<%= nameColor %>"><%= tasks[i].assign %></h4>
+
+            <% if (tasks[i].starred === "yes") { %>
+              <span style="color:#df3d3f"><i class="fas fa-star floatLeft" aria-hidden="true"></i></span>
+            <%} else { %>
+              <span style="color:#000"><i class="fas fa-star floatLeft" aria-hidden="true"></i></span>
+            <% } %>
+
+            <span><i class="far fa-times-circle"></i></span>
+
+            <p><%= tasks[i].task %></p>
+            <span>Reassign:</span>
+            <button type="button" name="button" class="reassign">Team</button>
+            <button type="button" name="button" class="reassign">Del</button>
+            <button type="button" name="button" class="reassign">Stephanie</button>
+            <button type="button" name="button" class="reassign">Leon</button>
+            <button type="button" name="button" class="reassign">Muigai</button>
+            <button type="button" name="button" class="reassign">Rougui</button>
+            <button type="button" name="button" class="reassign">Nick</button>
+          </li>
+        <% } %>
+      </ul>
+    </section>
+  </section>
+  <script src="main.js"></script>
+
+</body>
+
+</html>
