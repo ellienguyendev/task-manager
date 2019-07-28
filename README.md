@@ -21,14 +21,11 @@ It was so fun to build an app that's similar to something I use every day! There
 
 ## Credit
 Modified from Scotch.io's auth tutorial
-<<<<<<< HEAD
+
 
 ## Important
 create database.js file with:
-module.exports = {
-
+    module.exports = {
     'url' : '<db connect link>', // looks like mongodb://<user>:<pass>@mongo.onmodulus.net:27017/Mikha4ot
     'dbName': '<yourDbName>'
-};
-=======
->>>>>>> 44b5f9a5c006119dcefea24040ce1f8dbfc32b30
+    };
